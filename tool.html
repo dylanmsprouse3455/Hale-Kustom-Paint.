@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kristofer Hale | Custom Paint & Body</title>
+  <meta name="description" content="Kristofer Hale - custom automotive paint and body repair. Before/after work, process, and contact." />
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#0b1220;
+      --muted:#475569;
+      --muted2:#64748b;
+
+      --navy:#0b1b33;
+      --steel:#1f2937;
+      --accent:#1d4ed8;      /* professional blue */
+      --accent2:#0f172a;     /* near-black */
+
+      --border: rgba(15,23,42,0.12);
+      --card: rgba(255,255,255,0.96);
+      --shadow: 0 14px 34px rgba(2,6,23,0.10);
+      --shadow2: 0 8px 18px rgba(2,6,23,0.08);
+
+      --r1:22px;
+      --r2:16px;
+      --max: 1080px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--font);
+      color: var(--ink);
+      background:
+        radial-gradient(900px 420px at 10% -10%, rgba(29,78,216,0.10), transparent 60%),
+        radial-gradient(900px 520px at 92% 2%, rgba(15,23,42,0.06), transparent 62%),
+        linear-gradient(180deg, #ffffff 0%, #fbfcff 60%, #ffffff 100%);
+    }
+
+    a{ color: var(--accent); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .wrap{ width: min(var(--max), calc(100% - 28px)); margin: 0 auto; padding: 20px 0 64px; }
+
+    /* Simple top strip */
+    .top{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topin{
+      width: min(var(--max), calc(100% - 28px));
+      margin: 0 auto;
+      padding: 12px 0;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 260px;
+    }
+    .mark{
+      width: 42px; height: 42px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(135deg, rgba(11,27,51,1), rgba(31,41,55,1));
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      display:grid; place-items:center;
+      color:#fff;
+      font-weight: 950;
+      letter-spacing: 0.5px;
+      flex: 0 0 auto;
+    }
+    .brand h3{ margin:0; font-size: 14.8px; font-weight: 950; letter-spacing:0.2px; }
+    .brand p{ margin: 2px 0 0; color: var(--muted); font-size: 12.8px; font-weight: 700; }
+
+    .navlinks{
+      display:flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+      font-weight: 900;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .navlinks a{ color: var(--muted); padding: 6px 0; }
+    .navlinks a:hover{ color: var(--ink); }
+
+    /* Hero */
+    .hero{
+      margin-top: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.95);
+      border-radius: var(--r1);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(800px 320px at 14% 0%, rgba(29,78,216,0.10), transparent 60%),
+        radial-gradient(650px 320px at 92% 18%, rgba(15,23,42,0.08), transparent 62%);
+      pointer-events:none;
+    }
+    .heroin{
+      position:relative;
+      padding: 22px;
+      display:grid;
+      gap: 14px;
+      grid-template-columns: 1.25fr 0.75fr;
+      align-items:start;
+    }
+    @media (max-width: 900px){ .heroin{ grid-template-columns: 1fr; } }
+
+    h1{ margin:0; font-size: 34px; letter-spacing: -0.6px; line-height: 1.05; }
+    .sub{
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 70ch;
+    }
+
+    .chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 10px; }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(15,23,42,0.03);
+      color: var(--muted);
+      font-size: 12.6px;
+      font-weight: 900;
+    }
+    .chip b{ color: var(--ink); font-weight: 950; }
+
+    /* Cards + grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .span-12{ grid-column: span 12; }
+    .span-6{ grid-column: span 6; }
+    .span-4{ grid-column: span 4; }
+
+    @media (max-width: 900px){
+      .span-6{ grid-column: span 12; }
+      .span-4{ grid-column: span 6; }
+    }
+    @media (max-width: 520px){
+      .span-4{ grid-column: span 12; }
+      h1{ font-size: 28px; }
+    }
+
+    .card{
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: var(--r2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .cardhd{
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid rgba(15,23,42,0.08);
+      background: rgba(2,6,23,0.02);
+    }
+    .cardhd .t{ margin:0; font-size: 14.4px; font-weight: 950; letter-spacing: 0.1px; }
+    .cardhd .m{ margin: 4px 0 0; font-size: 12.8px; color: var(--muted); font-weight: 750; line-height: 1.35; }
+    .cardbd{ padding: 14px 16px 16px; color: var(--muted); font-size: 13.8px; line-height: 1.6; }
+
+    ul{ margin:0; padding-left: 18px; }
+    li{ margin: 6px 0; }
+
+    .cta{
+      border: 1px solid rgba(29,78,216,0.18);
+      background: rgba(29,78,216,0.06);
+      padding: 12px 14px;
+      border-radius: 14px;
+      color: var(--muted);
+      font-weight: 750;
+    }
+    .cta b{ color: var(--ink); font-weight: 950; }
+
+    /* Gallery */
+    .sectionTitle{
+      margin-top: 18px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .sectionTitle h2{
+      margin:0;
+      font-size: 14px;
+      letter-spacing: 0.22px;
+      text-transform: uppercase;
+      font-weight: 950;
+      color: rgba(11,18,32,0.86);
+    }
+    .pill{
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.70);
+      padding: 7px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .shot{ grid-column: span 6; }
+    @media (max-width: 900px){ .shot{ grid-column: span 12; } }
+
+    .shot button{
+      width:100%;
+      border: 1px solid var(--border);
+      background:#fff;
+      border-radius: var(--r2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      padding:0;
+      cursor:pointer;
+      text-align:left;
+      transition: 120ms ease;
+    }
+    .shot button:hover{ transform: translateY(-1px); }
+    .shot img{
+      width:100%;
+      height: 280px;
+      object-fit: cover;
+      display:block;
+    }
+    .cap{
+      padding: 12px 14px 14px;
+      color: var(--muted);
+      font-size: 13.4px;
+      line-height: 1.45;
+    }
+    .cap b{ color: var(--ink); }
+
+    /* Modal */
+    .modal{
+      position: fixed;
+      inset: 0;
+      background: rgba(2,6,23,0.60);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+      z-index: 1000;
+    }
+    .modal.open{ display:flex; }
+    .modalCard{
+      width: min(980px, 100%);
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid var(--border);
+      box-shadow: 0 22px 60px rgba(0,0,0,0.35);
+      overflow:hidden;
+    }
+    .modalTop{
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(15,23,42,0.10);
+      background: rgba(2,6,23,0.02);
+    }
+    .modalTop b{ color: var(--ink); }
+    .x{
+      border: 1px solid var(--border);
+      background:#fff;
+      border-radius: 12px;
+      padding: 8px 10px;
+      cursor:pointer;
+      font-weight: 950;
+      color: var(--ink);
+    }
+    .modalImg{
+      width:100%;
+      max-height: 70vh;
+      object-fit: contain;
+      background:#fff;
+      display:block;
+    }
+    .modalText{
+      padding: 12px 14px 14px;
+      color: var(--muted);
+      font-size: 13.6px;
+      line-height: 1.55;
+    }
+
+    .footer{
+      margin-top: 18px;
+      color: var(--muted2);
+      font-size: 12.8px;
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .small{ color: var(--muted2); font-size: 12.6px; }
+  </style>
+</head>
+
+<body>
+  <header class="top" role="banner">
+    <div class="topin">
+      <div class="brand">
+        <div class="mark" aria-hidden="true">KH</div>
+        <div>
+          <h3>Kristofer Hale</h3>
+          <p>Custom paint and body repair</p>
+        </div>
+      </div>
+
+      <nav class="navlinks" aria-label="Page">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" role="main">
+    <section class="hero" aria-label="Hero">
+      <div class="heroin">
+        <div>
+          <h1>This is what I do. Here is what I can do for you.</h1>
+          <p class="sub">
+            I repair and refinish panels, shells, and bodywork with clean prep and professional paint.
+            If you want it done right, the process matters. My work is built on proper repair, straight panels, and a finish that looks deep and consistent in real light.
+          </p>
+
+          <div class="chips" aria-label="Highlights">
+            <span class="chip"><b>Body + fiberglass</b> repair</span>
+            <span class="chip"><b>Paint prep</b> stripping, priming, blocking</span>
+            <span class="chip"><b>Custom paint</b> pearl and specialty</span>
+            <span class="chip"><b>Before and after</b> proof</span>
+          </div>
+
+          <div style="margin-top:12px" class="cta">
+            <b>Fast quote:</b> send 2–4 photos, year/make/model, and what you want done. I will tell you what it needs and what it costs.
+          </div>
+        </div>
+
+        <div class="card" aria-label="Quick contact">
+          <div class="cardhd">
+            <p class="t">Contact</p>
+            <p class="m">Replace with his real info</p>
+          </div>
+          <div class="cardbd">
+            <div><b>Phone:</b> <a href="tel:14230000000">(423) 000-0000</a></div>
+            <div style="margin-top:8px;"><b>Email:</b> <a href="mailto:quote@example.com">quote@example.com</a></div>
+            <div style="margin-top:8px;"><b>Facebook:</b> <a href="#" onclick="return false;">Add link</a></div>
+            <div style="margin-top:8px;"><b>Location:</b> Johnson City / Tri-Cities</div>
+            <div style="margin-top:10px;" class="small">Hours: Mon–Fri, 9–5 (edit as needed)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="sectionTitle" id="services">
+      <h2>Services</h2>
+      <span class="pill">What I can do</span>
+    </div>
+
+    <section class="grid" aria-label="Services">
+      <div class="card span-4">
+        <div class="cardhd">
+          <p class="t">Repair</p>
+          <p class="m">Fix it the right way</p>
+        </div>
+        <div class="cardbd">
+          <ul>
+            <li>Fiberglass repair (cracks, corners, reinforcement)</li>
+            <li>Panel repair and reshaping</li>
+            <li>Prep that lasts, not quick patches</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card span-4">
+        <div class="cardhd">
+          <p class="t">Paint</p>
+          <p class="m">Clean, even finish</p>
+        </div>
+        <div class="cardbd">
+          <ul>
+            <li>Strip, prime, block, and paint</li>
+            <li>Correction and full respray</li>
+            <li>Durable clear coat and deep gloss</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card span-4">
+        <div class="cardhd">
+          <p class="t">Custom</p>
+          <p class="m">Standout work</p>
+        </div>
+        <div class="cardbd">
+          <ul>
+            <li>Pearl and specialty finishes</li>
+            <li>Drag cars, shells, and custom panels</li>
+            <li>Build-to-show quality presentation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="sectionTitle" id="work">
+      <h2>Work</h2>
+      <span class="pill">Tap to enlarge</span>
+    </div>
+
+    <section class="gallery" aria-label="Gallery">
+      <!-- Replace these filenames with your actual images.
+           If your images are .png, use .png here too.
+           Example: before_drag.png, after_drag.png
+      -->
+      <div class="shot">
+        <button type="button" data-title="Before" data-src="before1.jpg" data-text="Before: major cracks and broken corners.">
+          <img src="before1.jpg" alt="Before photo of the project" onerror="this.style.display='none'; this.parentElement.querySelector('.cap').innerHTML='<b>Before photo placeholder</b><br>Add file: before_drag.png';" />
+          <div class="cap"><b>Before</b><br>Tap to view full size</div>
+        </button>
+      </div>
+
+      <div class="shot">
+        <button type="button" data-title="After" data-src="after1.jpg" data-text="After: custom black cherry pearl finish.">
+          <img src="after1.jpg" alt="After photo of the project" onerror="this.style.display='none'; this.parentElement.querySelector('.cap').innerHTML='<b>After photo placeholder</b><br>Add file: after1.jpg';" />
+          <div class="cap"><b>After</b><br>Tap to view full size</div>
+        </button>
+      </div>
+    </section>
+
+    <div class="sectionTitle" id="process">
+      <h2>Process</h2>
+      <span class="pill">How the finish happens</span>
+    </div>
+
+    <section class="grid" aria-label="Process">
+      <div class="card span-12">
+        <div class="cardhd">
+          <p class="t">1500 horsepower drag car shell</p>
+          <p class="m">Major fiberglass repair to finished custom paint</p>
+        </div>
+        <div class="cardbd">
+          <ul>
+            <li>Major fiberglass repair for broken corners and major cracks</li>
+            <li>Complete paint stripping</li>
+            <li>Two rounds of priming and blocking</li>
+            <li>Custom black cherry pearl finish (Revolt Auto Paint)</li>
+          </ul>
+          <div class="small" style="margin-top:10px;">
+            This story format is exactly what sells on Facebook: one link, proof photos, and a clear process.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="sectionTitle" id="contact">
+      <h2>Contact</h2>
+      <span class="pill">Get a quote</span>
+    </div>
+
+    <section class="grid" aria-label="Contact section">
+      <div class="card span-6">
+        <div class="cardhd">
+          <p class="t">Call or text</p>
+          <p class="m">Fastest response</p>
+        </div>
+        <div class="cardbd">
+          <div><b>Phone:</b> <a href="tel:14230000000">(423) 000-0000</a></div>
+          <div style="margin-top:8px;"><b>Email:</b> <a href="mailto:quote@example.com">quote@example.com</a></div>
+          <div style="margin-top:8px;"><b>Facebook:</b> <a href="#" onclick="return false;">Add link</a></div>
+        </div>
+      </div>
+
+      <div class="card span-6">
+        <div class="cardhd">
+          <p class="t">What to send</p>
+          <p class="m">So I can quote accurately</p>
+        </div>
+        <div class="cardbd">
+          <ul>
+            <li>2–4 photos of the damage or panel</li>
+            <li>Year, make, model (or what the part is)</li>
+            <li>What you want done (repair, paint, both)</li>
+            <li>Timeline (urgent or flexible)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div>Demo site for Kristofer Hale. Replace contact details and image filenames.</div>
+      <div>Built as a clean shareable link for Facebook and text.</div>
+    </div>
+  </main>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modalCard">
+      <div class="modalTop">
+        <b id="modalTitle">Preview</b>
+        <button class="x" type="button" id="closeBtn" aria-label="Close">Close</button>
+      </div>
+      <img class="modalImg" id="modalImg" alt="" />
+      <div class="modalText" id="modalText"></div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modalImg");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalText = document.getElementById("modalText");
+    const closeBtn = document.getElementById("closeBtn");
+
+    function openModal(title, src, text){
+      modalTitle.textContent = title;
+      modalImg.src = src;
+      modalImg.alt = title;
+      modalText.textContent = text || "";
+      modal.classList.add("open");
+      closeBtn.focus();
+    }
+
+    function closeModal(){
+      modal.classList.remove("open");
+      modalImg.src = "";
+    }
+
+    document.querySelectorAll(".shot button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        openModal(btn.dataset.title || "Preview", btn.dataset.src, btn.dataset.text);
+      });
+    });
+
+    closeBtn.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => { if(e.target === modal) closeModal(); });
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape" && modal.classList.contains("open")) closeModal();
+    });
+  </script>
+</body>
+</html>
